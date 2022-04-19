@@ -1,10 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <NavBar />
+  <div class="nav-buttons">
+    <button class="button" @click="back">Go back</button>
+    <button class="button" @click="forward">Go forward</button>
+  </div>
+
   <router-view />
 </template>
+<script>
+import NavBar from "@/components/NavBar.vue";
+
+export default {
+  components: { NavBar },
+  methods: {
+    back() {
+      this.$router.go(-1);
+    },
+    forward() {
+      this.$router.go(1);
+    },
+  },
+};
+</script>
 
 <style>
 #app {
@@ -15,16 +32,18 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+body {
+  margin: 0;
 }
-
-nav a {
-  font-weight: bold;
+.nav-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+.button {
+  background-color: aqua;
   color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
 }
 </style>
